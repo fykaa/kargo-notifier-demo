@@ -1,0 +1,21 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: test
+  namespace: kargo-demo-1
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: kargo-demo-1
+    sources:
+      direct: true
+  promotionTemplate:
+    spec:
+      steps:
+      - uses: notify
+        config:
+          message: "Hello, world"
+          channel:
+            kind: NotificationChannel
+            name: slack

@@ -1,0 +1,20 @@
+apiVersion: ee.kargo.akuity.io/v1alpha1
+kind: NotificationChannel
+metadata:
+  name: slack
+  namespace: kargo-demo-1
+spec:
+  slack:
+    channelID: C08CWPFBWLA
+    secretRef:
+      name: slack-secret
+---
+apiVersion: ee.kargo.akuity.io/v1alpha1
+kind: ClusterNotificationChannel
+metadata:
+  name: slack-cluster
+spec:
+  slack:
+    channelID: C08CWPFBWLA
+    secretRef:
+      name: slack-cluster-secret

@@ -1,0 +1,22 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: uat
+  namespace: kargo-demo-1
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: kargo-demo-1
+    sources:
+      stages:
+      - test
+  promotionTemplate:
+    spec:
+      steps:
+      - uses: notify
+        config:
+          message: "Promotion triggered for project `${{ ctx.project }}` on stage `${{ ctx.stage }}` for promotion `${{ ctx.promotion }}`"
+          channel:
+            kind: ClusterNotificationChannel
+            name: slack-cluster
